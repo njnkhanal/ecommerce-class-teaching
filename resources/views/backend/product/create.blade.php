@@ -34,13 +34,14 @@
                             value="{{ old('title') }}"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1"> category-id</label>
+                        <label for="exampleInputEmail1"> category</label>
                         {{--  <input type="number" class="form-control" name="category_id" id="exampleInputEmail1"
                             aria-describedby="emailHelp" value="{{ old('title') }}">  --}}
                         @php
                             $categories = App\Models\category::all();
                         @endphp
-                        <select name="category_id" id=""class="form-control">
+                        <select name="category_id" id="category" class="form-control">
+                            <option value="">Select Category</option>
                             @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->title }}</option>
                             @endforeach
@@ -48,10 +49,20 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">product sub-category-id</label>
-                        <input type="number" class="form-control" name="sub_category_id" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" value="{{ old('title') }}">
+                        <label for="exampleInputEmail1">product sub Category</label>
+                        {{-- <input type="number" class="form-control" name="sub_category_id" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" value="{{ old('title') }}"> --}}
+                        @php
+                            $subcategories = App\Models\subcategory::all();
+                        @endphp
+                        <select name="category_id" id="subcategory" class="form-control">
+                            <option value="">Select Sub Category</option>
+                            @foreach ($subcategories as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->title }}</option>
+                            @endforeach
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputEmail1">product brand-id</label>
                         {{--  <input type="number" class="form-control" name="brand_id" id="exampleInputEmail1"
@@ -96,14 +107,31 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $('#category').change(function(e) {
+            e.preventDefault();
+            let cat_id = $(this).val();
+            $.ajax({
+                type: "get",
+                url: "/api/get/subcategories",
+                data: {
+                    id: cat_id
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        });
     </script>
 </body>
 
