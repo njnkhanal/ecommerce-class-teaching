@@ -48,18 +48,14 @@
                         </select>
 
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="subCatContainer" style="display: none">
                         <label for="exampleInputEmail1">product sub Category</label>
                         {{-- <input type="number" class="form-control" name="sub_category_id" id="exampleInputEmail1"
                             aria-describedby="emailHelp" value="{{ old('title') }}"> --}}
-                        @php
-                            $subcategories = App\Models\subcategory::all();
-                        @endphp
+
                         <select name="category_id" id="subcategory" class="form-control">
                             <option value="">Select Sub Category</option>
-                            @foreach ($subcategories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->title }}</option>
-                            @endforeach
+
                         </select>
                     </div>
 
@@ -69,7 +65,7 @@
                             aria-describedby="emailHelp" value="{{ old('title') }}">  --}}
                         @php
                             $brands = App\Models\brand::all();
-                            
+
                         @endphp
                         <select name="brand_id" id="" class="form-control">
                             @foreach ($brands as $cat)
@@ -128,7 +124,20 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
+                    if (response.status == true) {
+                        let data = response.data;
+                        let output = '<option value="">Select Sub Category</option>';
+                        $.each(data, function(index, subcat) {
+                            output += '<option value="' + subcat.id + '">' + subcat.title +
+                                '</option>';
+                        });
+                        $('#subCatContainer').show();
+                        $('#subcategory').empty();
+                        $('#subcategory').append(output);
+                    } else {
+                        $('#subCatContainer').hide();
+                        $('#subcategory').empty();
+                    }
                 }
             });
         });

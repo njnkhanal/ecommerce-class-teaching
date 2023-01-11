@@ -22,9 +22,20 @@ class SubcategoryController extends Controller
 
 
     // for api
-    public function getAll()
+    public function getAll(Request $request)
     {
-        $subcategory = subcategory::all();
+
+        $cat_id = $request->id;
+        // $category = category::findorfail($cat_id); thorw 404 not found page
+        $category = category::find($cat_id);
+        if ($category == null) {
+            return response()->json([
+                'status' => false,
+                'message' => '404 not found',
+            ]);
+        }
+        $subcategory = $category->subcategories;
+        // $subcategory = subcategory::all();
         return response()->json([
             'status' => true,
             'data' => $subcategory
