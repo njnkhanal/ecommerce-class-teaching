@@ -43,9 +43,9 @@
                                 <td>{{ $pcat->id }}</td>
                                 <td>{{ $pcat->title }}</td>
                                 <td>{{ $pcat->description }}</td>
-                                <td>{{ $pcat->category_id }}</td>
-                                <td>{{ $pcat->sub_category_id }}</td>
-                                <td>{{ $pcat->brand_id }}</td>
+                                <td>{{ $pcat->category ? $pcat->category->title : 'Null' }}</td>
+                                <td>{{ $pcat->subcategory ? $pcat->subcategory->title : 'Null' }}</td>
+                                <td>{{ $pcat->brand ? $pcat->brand->title : 'Null' }}</td>
                                 <td>{{ $pcat->price }}</td>
                                 <td>{{ $pcat->discount }}</td>
                                 <td>{{ $pcat->stock }}</td>

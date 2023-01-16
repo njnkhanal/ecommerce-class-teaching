@@ -17,16 +17,14 @@ class SubcategoryController extends Controller
     {
         $subcategory = subcategory::all();
         return view('backend.subcategory.index', compact('subcategory'));
+
     }
-
-
 
     // for api
     public function getAll(Request $request)
     {
-
         $cat_id = $request->id;
-        // $category = category::findorfail($cat_id); thorw 404 not found page
+        // $category = category::findorfail($cat_id);
         $category = category::find($cat_id);
         if ($category == null) {
             return response()->json([
@@ -34,15 +32,12 @@ class SubcategoryController extends Controller
                 'message' => '404 not found',
             ]);
         }
-        $subcategory = $category->subcategories;
-        // $subcategory = subcategory::all();
+        $subcategory = $category->subcategory;
         return response()->json([
             'status' => true,
-            'data' => $subcategory
+            'data' => $subcategory,
         ]);
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -77,6 +72,7 @@ class SubcategoryController extends Controller
         }
         subcategory::create($data);
         return redirect(route('subcategory.index'));
+
     }
 
     /**
@@ -111,6 +107,11 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $subcategory)
     {
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'category_id' => 'required|exists:categories,id',
+        ]);
         $subcategory = subcategory::findorfail($subcategory);
         $data = $request->all();
         if ($request->hasFile('image')) {

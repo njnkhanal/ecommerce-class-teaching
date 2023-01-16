@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">subcategory title</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                            id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $subcategory->title }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInput">subcategory image</label>
@@ -40,7 +40,7 @@
                         <input type="number" name="category_id"
                             class="form-control @error('category_id') is-invalid
                               @enderror"
-                            id="exampleInput">
+                            id="exampleInput" value="{{ $subcategory->category_id }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
 

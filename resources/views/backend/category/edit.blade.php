@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">category title</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                            value="{{ $category->title }}" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $category->title }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInput">category image</label>

@@ -34,7 +34,7 @@
                             value="{{ old('title') }}"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1"> category</label>
+                        <label for="exampleInputEmail1"> category-id</label>
                         {{--  <input type="number" class="form-control" name="category_id" id="exampleInputEmail1"
                             aria-describedby="emailHelp" value="{{ old('title') }}">  --}}
                         @php
@@ -47,27 +47,32 @@
                             @endforeach
                         </select>
 
+
                     </div>
                     <div class="form-group" id="subCatContainer" style="display: none">
-                        <label for="exampleInputEmail1">product sub Category</label>
-                        {{-- <input type="number" class="form-control" name="sub_category_id" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" value="{{ old('title') }}"> --}}
-
-                        <select name="category_id" id="subcategory" class="form-control">
-                            <option value="">Select Sub Category</option>
-
+                        <label for="exampleInputEmail1">product sub-category-id</label>
+                        {{--  <input type="number" class="form-control" name="sub_category_id" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" value="{{ old('title') }}">  --}}
+                        @php
+                            $subcatagories = App\Models\subcategory::all();
+                        @endphp
+                        <select name="sub_category_id" id="subcategory" class="form-control">
+                            <option value="">Select subCategory</option>
+                            @foreach ($subcatagories as $cat)
+                                <option value="{{ $cat->id }}"> {{ $cat->title }}</option>
+                            @endforeach
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label for="exampleInputEmail1">product brand-id</label>
                         {{--  <input type="number" class="form-control" name="brand_id" id="exampleInputEmail1"
                             aria-describedby="emailHelp" value="{{ old('title') }}">  --}}
                         @php
                             $brands = App\Models\brand::all();
-
+                            
                         @endphp
                         <select name="brand_id" id="" class="form-control">
+                            <option value="">Select brand</option>
                             @foreach ($brands as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->title }}</option>
                             @endforeach
@@ -88,7 +93,7 @@
                         <input type="number" class="form-control" name="stock" id="exampleInputEmail1"
                             aria-describedby="emailHelp" value="{{ old('title') }}">
                     </div>
-                    <button type="sumbit" class="btn btn-primary">sumbit</button>
+                    <button type="submit" class="btn btn-primary">submit</button>
                     <a href="{{ route('product.index') }}">
                         <button type="button" class="btn btn-primary">index page</button>
                     </a>
@@ -111,7 +116,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
     <script>
         $('#category').change(function(e) {
             e.preventDefault();
@@ -124,6 +128,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    console.log(response);
                     if (response.status == true) {
                         let data = response.data;
                         let output = '<option value="">Select Sub Category</option>';

@@ -41,11 +41,11 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required ',
-            'category_id' => 'required|integer',
+            'category_id' => 'required|integer|exists:categories,id',
 
-            'sub_category_id' => 'required|integer',
+            'sub_category_id' => 'required|integer|exists:subcategories,id',
 
-            'brand_id' => 'required|integer',
+            'brand_id' => 'required|integer|exists:brands,id',
             'price' => 'required|integer',
 
             'discount' => 'required|integer',
@@ -94,11 +94,11 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required ',
-            'category_id' => 'required|integer',
+            'category_id' => 'required|integer|exists:categories,id',
 
-            'sub_category_id' => 'required|integer',
+            'sub_category_id' => 'required|integer|exists:subcategories,id',
 
-            'brand_id' => 'required',
+            'brand_id' => 'required|integer|exists:brands,id',
             'price' => 'required|integer',
 
             'discount' => 'required|integer',

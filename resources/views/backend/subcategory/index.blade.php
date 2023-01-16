@@ -28,7 +28,7 @@
                             <th scope="col">S.N</th>
                             <th scope="col">title</th>
                             <th scope="col">image</th>
-                            <th scope="col">Category</th>
+                            <th scope="col">category</th>
                             <th scope="col">date</th>
                             <th>action</th>
                         </tr>
@@ -40,7 +40,7 @@
                                 <td>{{ $cat->title }}</td>
                                 <td><img src="{{ asset($cat->image) }}" alt="" width="100px" height="100px">
                                 </td>
-                                <td>{{ $cat->category ? $cat->category->title : '' }}</td>
+                                <td>{{ $cat->category ? $cat->category->title : 'Null' }}</td>
                                 <td>
                                     {{ $cat->created_at }}
                                 </td>

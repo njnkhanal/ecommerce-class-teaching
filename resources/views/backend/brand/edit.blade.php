@@ -33,7 +33,7 @@
                         <input type="file" name="image" class="form-control">
                         <img src="{{ asset($brand->image) }}" height="100px" width="100px" alt="">
                     </div>
-                    <button type="sumbit" class="btn btn-primary">sumbit</button>
+                    <button type="sumbit" class="btn btn-primary">submit</button>
                     <a href="{{ route('brand.index') }}">
                         <button type="button" class="btn btn-primary">index page</button>
                     </a>

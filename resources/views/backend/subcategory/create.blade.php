@@ -34,17 +34,17 @@
                             id="exampleInput">
                     </div>
                     <div class="form group">
-                        <label for="exampleInput">category</label>
-                        {{-- <input type="number" name="category_id"
+                        <label for="exampleInput">category id</label>
+                        {{--  <input type="number" name="category_id"
                             class="form-control @error('category_id') is-invalid
                               @enderror"
-                            id="exampleInput"> --}}
+                            id="exampleInput">  --}}
                         @php
                             $categories = App\Models\category::all();
+                            
                         @endphp
-                        <select name="category_id" id=""
-                            class="form-control @error('category_id') is-invalid
-                        @enderror">
+
+                        <select name="category_id" id="">
                             @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->title }}</option>
                             @endforeach
