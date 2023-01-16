@@ -1,5 +1,7 @@
 <?php
+
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,15 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // Route::get('/index', function () {
 //     return view('backend.category.index');
 // });
 // Route::get('/category', function () {
 //     return view('backend.category.create');
 // });
+Route::get('/', [FrontendController::class, 'homepage'])->name('front.home');
+
+
+
 Route::resource('/category', categoryController::class);
 Route::resource('/subcategory', SubcategoryController::class);
 Route::resource('/brand', App\Http\Controllers\brandController::class);
