@@ -155,7 +155,7 @@
                         @if (count($cat->subcategory) > 0)
                             <div class="cate-container"
                                 style="position: absolute; display:flex; align-items:center; z-index: 99999; background-color: #fff; padding: 20px 20px;">
-                                <div class="cate-head-sub-container">
+                                <div class="cate-head-sub-container d-flex">
                                     <ul>
                                         @foreach ($cat->subcategory as $sub_cat)
                                             <li>
@@ -166,6 +166,10 @@
                                             </li>
                                         @endforeach
                                     </ul>
+                                    <div>
+                                        <img src="{{ asset($cat->image) }}" style="width: 200px" alt=""
+                                            srcset="">
+                                    </div>
                                 </div>
 
                             </div>

@@ -30,7 +30,7 @@
     <!-- Trending Week Line -->
     <section class="trending-week-line">
         <div class="trending-design">
-            <span class="trending-para">Trending This Week</span>
+            <span class="trending-para">Latest This Week</span>
         </div>
     </section>
 
@@ -40,256 +40,25 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="cards-wrapper">
-
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing hair
-                                    mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
-                                        5.00% off</p>
+                        @foreach ($latest_products as $product)
+                            <div class="card cards"
+                                style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
+                                <img src="{{ asset($product->image) }}" alt="Card image cap">
+                                <div class="card-body" style="height: auto !important; padding: 10px !important;">
+                                    <p style="font-size: 16px; margin-bottom: 10px !important;">{{ $product->title }}</p>
+                                    <h5>Rs.
+                                        {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                                    </h5>
+                                    <div class="rs-off" style="display: flex; align-items: center;">
+                                        <del
+                                            style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.{{ number_format($product->price, 2) }}</del>
+                                        <p
+                                            style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
+                                            {{ number_format($product->discount, 2) }}% off</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing hair
-                                    mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing hair
-                                    mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing hair
-                                    mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing hair
-                                    mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="cards-wrapper">
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="cards-wrapper">
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important;  font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card cards" style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
-                            <img src="http://aaviss.com.np/uploads/contents/image210529030904Emlh71.jpg"
-                                alt="Card image cap">
-                            <div class="card-body" style="height: auto !important; padding: 10px !important;">
-                                <p style="font-size: 16px; margin-bottom: 10px !important;">Keratin treatment nourshing
-                                    hair mask keratin moisturizing</p>
-                                <h5>Rs. 760.00</h5>
-                                <div class="rs-off" style="display: flex; align-items: center;">
-                                    <del
-                                        style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.800.00</del>
-                                    <p
-                                        style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
-                                        5.00% off</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -339,9 +108,40 @@
     </section>
 
     <!-- More To Explore -->
-    <section class="more-to-explore">
-        <div class="more-to-explore-design">
-            <span class="more-to-para">More To Explore</span>
+
+    <section class="trending-week-line">
+        <div class="trending-design">
+            <span class="trending-para">Explore in furniture</span>
+        </div>
+    </section>
+    <section class="trending-card-slider">
+        <div id="carouselExampleControls" class="carousel-dark slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="cards-wrapper">
+                        @foreach ($furniture_products as $product)
+                            <div class="card cards"
+                                style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
+                                <img src="{{ asset($product->image) }}" alt="Card image cap">
+                                <div class="card-body" style="height: auto !important; padding: 10px !important;">
+                                    <p style="font-size: 16px; margin-bottom: 10px !important;">{{ $product->title }}</p>
+                                    <h5>Rs.
+                                        {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                                    </h5>
+                                    <div class="rs-off" style="display: flex; align-items: center;">
+                                        <del
+                                            style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.{{ number_format($product->price, 2) }}</del>
+                                        <p
+                                            style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
+                                            {{ number_format($product->discount, 2) }}% off</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 @endsection
