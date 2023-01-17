@@ -43,6 +43,7 @@
                         @foreach ($latest_products as $product)
                             <div class="card cards"
                                 style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
+                                <span>{{ \carbon\Carbon::parse($product->created_at)->diffForHumans() }}</span>
                                 <img src="{{ asset($product->image) }}" alt="Card image cap">
                                 <div class="card-body" style="height: auto !important; padding: 10px !important;">
                                     <p style="font-size: 16px; margin-bottom: 10px !important;">{{ $product->title }}</p>
