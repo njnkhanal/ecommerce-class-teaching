@@ -15,4 +15,10 @@ class FrontendController extends Controller
         $furniture_products = product::where('category_id', 1)->latest()->limit(5)->get();
         return view('frontend.pages.homepage', compact('banners', 'latest_products', 'furniture_products'));
     }
+
+    public function productFilter($category)
+    {
+        $products = product::where('category_id', $category)->limit(20)->get();
+        return view('frontend.pages.productList', compact('products'));
+    }
 }

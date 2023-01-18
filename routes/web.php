@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('backend.category.create');
 // });
 Route::get('/', [FrontendController::class, 'homepage'])->name('front.home');
+Route::get('/product-filter/{category}', [FrontendController::class, 'productFilter'])->name('front.home');
 
 
 
