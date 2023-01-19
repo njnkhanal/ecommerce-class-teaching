@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubcategoryController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +37,12 @@ Route::resource('/subcategory', SubcategoryController::class);
 Route::resource('/brand', App\Http\Controllers\brandController::class);
 Route::resource('/product', App\Http\Controllers\ProductController::class);
 Route::resource('/banner', App\Http\Controllers\BannerController::class);
+
+Auth::routes([
+    'verify' => true,
+]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/profile', [HomeController::class, 'profile'])->name('self.profile')->middleware('auth', 'verified');
