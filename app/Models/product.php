@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class product extends Model
 {
-    protected $fillable = ['title', 'description', 'category_id', 'sub_category_id', 'brand_id', 'price', 'discount', 'stock'];
+    protected $fillable = ['title', 'slug', 'description', 'image', 'category_id', 'sub_category_id', 'brand_id', 'price', 'discount', 'stock'];
     // one to one relationship between category and product
     // (products tables’s category_id is belongs to categories table’s id)
     public function category()

@@ -28,10 +28,20 @@
                         <input type="text" class="form-control" name="title" id="exampleInputEmail1"
                             aria-describedby="emailHelp" value="{{ old('title') }}">
                     </div>
+                    {{--  <div class="form-group">
+                        <label for="exampleInputEmail1">product slug</label>
+                        <input type="text" class="form-control" name="slug" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" value="{{ old('slug') }}">
+                    </div>  --}}
                     <div class="form-group">
                         <label for="exampleInput">product description</label>
                         <textarea name="description" id="exampleInput" class="form-control" cols="30" rows="5"
                             value="{{ old('title') }}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInput">product image</label>
+                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"
+                            id="exampleInput">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"> category-id</label>

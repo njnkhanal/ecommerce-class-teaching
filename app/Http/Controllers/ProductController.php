@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -50,9 +51,18 @@ class ProductController extends Controller
 
             'discount' => 'required|integer',
             'stock' => 'required|integer',
+            // 'slug' => 'required|unique:products,slug',
 
         ]);
         $data = $request->all();
+        $data['slug'] = Str::slug(Str::lower($data['title']), '-');
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $name = "image" . now()->format('y-m-d-h-i-s') . "." . $img->getClientOriginalExtension();
+            $path = "uplod/";
+            $img->move($path, $name);
+            $data['image'] = $path . $name;
+        }
 
         product::create($data);
         return redirect(route('product.index'));
@@ -106,6 +116,15 @@ class ProductController extends Controller
 
         ]);
         $data = $request->all();
+        $data['slug'] = Str::slug(Str::lower($data['title']), '-');
+
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $name = "image" . now()->format('y-m-d-h-i-s') . "." . $img->getClientOriginalExtension();
+            $path = "uplod/";
+            $img->move($path, $name);
+            $data['image'] = $path . $name;
+        }
 
         $product->update($data);
         return redirect(route('product.index'));

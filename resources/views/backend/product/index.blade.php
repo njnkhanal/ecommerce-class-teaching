@@ -26,7 +26,9 @@
                         <tr>
                             <th scope="col">S.N</th>
                             <th scope="col">title</th>
+                            <th scope="col">slug</th>
                             <th scope="col">description</th>
+                            <th scope="col">image</th>
                             <th scope="col">category_id</th>
                             <th scope="col">sub_category_id</th>
                             <th scope="col">brand_id</th>
@@ -42,7 +44,11 @@
                             <tr>
                                 <td>{{ $pcat->id }}</td>
                                 <td>{{ $pcat->title }}</td>
+                                <td>{{ $pcat->slug }}</td>
+
                                 <td>{{ $pcat->description }}</td>
+                                <td><img src="{{ asset($pcat->image) }}" alt="" width="100px" height="100px">
+                                </td>
                                 <td>{{ $pcat->category ? $pcat->category->title : 'Null' }}</td>
                                 <td>{{ $pcat->subcategory ? $pcat->subcategory->title : 'Null' }}</td>
                                 <td>{{ $pcat->brand ? $pcat->brand->title : 'Null' }}</td>

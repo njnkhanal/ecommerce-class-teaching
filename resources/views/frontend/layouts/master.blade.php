@@ -7,7 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Vanilla Css -->
-    <link rel="stylesheet" href="{{ asset('frontend/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/product-filter.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/product-view-page.css') }}">
     <!-- FontAwesome Link -->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
@@ -141,45 +143,76 @@
 
     </section>
 
-
     <!-- Category Section -->
     <section class="category">
         <ul>
             @php
                 $categories = App\Models\category::all();
             @endphp
+
             @foreach ($categories as $cat)
                 <li>
                     <div class="cate-show-title">
                         <a href=""><span class="cate-show-title-design">{{ $cat->title }}</span></a>
                         @if (count($cat->subcategory) > 0)
                             <div class="cate-container"
-                                style="position: absolute; display:flex; align-items:center; z-index: 99999; background-color: #fff; padding: 20px 20px;">
-                                <div class="cate-head-sub-container d-flex">
+                                style="position: absolute; display:flex; z-index: 99999; background-color: #fff; padding: 20px 20px;">
+                                <div class="cate-head-sub-container">
                                     <ul>
                                         @foreach ($cat->subcategory as $sub_cat)
                                             <li>
                                                 <div class="cate-head">
-                                                    <a href="" class="cate-head-a"
-                                                        style="color: #000; font-weight: 500;">{{ $sub_cat->title }}</a>
+                                                    <a href="{{route('productlist.subu',$sub_cat)}}" class="cate-head-a"
+                                                        style="color: #000; font-weight: 500;">{{ $sub_cat->title }}
+                                                    </a>
                                                 </div>
+                                                {{-- <div class="cate-sub">
+                                                    <ul
+                                                        style="display: inline-block; font-size: 14px; margin-top: 10px;">
+                                                        <li>
+                                                            <a href="" class="cate-sub-a"
+                                                                style="color: #000;"><span>Pants</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="product-filter.html" class="cate-sub-a"
+                                                                style="color: #000;"><span>Formal
+                                                                    Shirts</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="product-filter.html" class="cate-sub-a"
+                                                                style="color: #000;"><span>Casual
+                                                                    Shirts</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="product-filter.html" class="cate-sub-a"
+                                                                style="color: #000;"><span>Coats</span></a>
+                                                        </li>
+                                                        <div class="img">
+                                                            kdkcdk
+                                                        </div>
+                                                    </ul>
+                                                </div> --}}
                                             </li>
                                         @endforeach
                                     </ul>
-                                    <div>
-                                        <img src="{{ asset($cat->image) }}" style="width: 200px" alt=""
-                                            srcset="">
-                                    </div>
                                 </div>
+
+                                <div class="for-image" style="width: 250px; height: 200px; background-color: red;">
+                                    <img src="{{ $cat->image }}" alt="">
+                                </div>
+
+
 
                             </div>
                         @endif
+
                     </div>
                 </li>
             @endforeach
-
         </ul>
-    </section>
+
+    </section> <!-- Category Section -->
+
 
 
     @yield('content')

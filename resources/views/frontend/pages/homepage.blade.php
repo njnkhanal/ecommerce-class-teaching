@@ -11,8 +11,8 @@
             </ol>
             <div class="carousel-inner">
                 @foreach ($banners as $key => $banner)
-                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img class="d-block w-100" src="{{ asset($banner->image) }}" alt="First slide">
+                    <div class="carousel-item  {{ $key == 0 ? 'active' : '' }}">
+                        <img class="d-block w-100 banner-img" src="{{ asset($banner->image) }}" alt="First slide">
                     </div>
                 @endforeach
             </div>
@@ -30,7 +30,7 @@
     <!-- Trending Week Line -->
     <section class="trending-week-line">
         <div class="trending-design">
-            <span class="trending-para">Latest This Week</span>
+            <span class="trending-para">latest This Week</span>
         </div>
     </section>
 
@@ -40,10 +40,34 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="cards-wrapper">
+
                         @foreach ($latest_products as $product)
                             <div class="card cards"
                                 style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
                                 <span>{{ \carbon\Carbon::parse($product->created_at)->diffForHumans() }}</span>
+
+                                <img src="{{ asset($product->image) }}" alt="Card image cap">
+                                <div class="card-body" style="height: auto !important; padding: 10px !important;">
+                                    <p style="font-size: 16px; margin-bottom: 10px !important;">{{ $product->title }}</p>
+                                    <h5>Rs.
+                                        {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                                    </h5>
+                                    <div class="rs-off" style="display: flex; align-items: center;">
+                                        <del
+                                            style="margin-right: 10px; color: rgb(152, 150, 150) !important; font-size: 14px;">Rs.{{ number_format($product->price, 2) }}</del>
+                                        <p
+                                            style="color: rgb(255, 115, 0); background-color: rgb(239, 236, 236); padding: 0 5px !important; font-size: 14px;">
+                                            {{ number_format($product->discount, 2) }}% off</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @foreach ($latest_products as $product)
+                            <div class="card cards"
+                                style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
+                                <span>{{ \carbon\Carbon::parse($product->created_at)->diffForHumans() }}</span>
+
                                 <img src="{{ asset($product->image) }}" alt="Card image cap">
                                 <div class="card-body" style="height: auto !important; padding: 10px !important;">
                                     <p style="font-size: 16px; margin-bottom: 10px !important;">{{ $product->title }}</p>
@@ -62,6 +86,8 @@
                         @endforeach
                     </div>
                 </div>
+
+
             </div>
 
         </div>
@@ -109,7 +135,6 @@
     </section>
 
     <!-- More To Explore -->
-
     <section class="trending-week-line">
         <div class="trending-design">
             <span class="trending-para">Explore in furniture</span>
@@ -123,6 +148,8 @@
                         @foreach ($furniture_products as $product)
                             <div class="card cards"
                                 style="width: calc(100%/5); height: auto !important; margin-right: 10px;">
+                                <span>{{ \carbon\Carbon::parse($product->created_at)->diffForHumans() }}</span>
+
                                 <img src="{{ asset($product->image) }}" alt="Card image cap">
                                 <div class="card-body" style="height: auto !important; padding: 10px !important;">
                                     <p style="font-size: 16px; margin-bottom: 10px !important;">{{ $product->title }}</p>
@@ -142,7 +169,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 @endsection
