@@ -71,7 +71,7 @@
                             <a href={{ route('cart.store', $productdetail->slug) }}> <button
                                     style="border: none; background-color:#383e56; color: #fff; padding: 5px 50px; border-radius: 5px; ">
                                     <i class="fa-solid fa-cart-plus "></i>
-                                    <span>Add To Cart</span>
+                                    <span>Add to cart</span>
                                 </button></a>
                         </div>
                         <div class="buynow " style="float: right; margin-top: 10px; ">

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cart;
-use App\Models\product;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,25 +33,18 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $slug)
+    public function store(Request $request)
     {
-        $product = product::where('slug', $slug)->first();
-        if ($product == null) {
-            return back();
-        }
-
-        $data = ['product_id' => $product->id, 'user_id' => Auth::user()->id, 'quantity' => 1];
-        cart::create($data);
-        return redirect(route('cartindex'));
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(cart $cart)
+    public function show(Order $order)
     {
         //
     }
@@ -61,10 +52,10 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(cart $cart)
+    public function edit(Order $order)
     {
         //
     }
@@ -73,10 +64,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cart $cart)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -84,13 +75,11 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy($cart)
+    public function destroy(Order $order)
     {
-        $cart = cart::Findorfail($cart);
-        $cart->delete();
-        return back()->with('success', 'Deleted Successfully!');
+        //
     }
 }

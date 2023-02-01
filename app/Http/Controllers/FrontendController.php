@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\banner;
 use App\Models\product;
-use Illuminate\Support\Facades\Auth;
 
 class frontendcontroller extends Controller
 {
@@ -20,6 +19,7 @@ class frontendcontroller extends Controller
     {
         $product = product::where('sub_category_id', $category)->get();
         return view('frontend.pages.productlist', compact('product'));
+
     }
     public function subu1($details)
     {
@@ -27,14 +27,10 @@ class frontendcontroller extends Controller
         $product_related = product::where('category_id', $productdetail->category_id)->latest()->limit(10)->get();
 
         return view('frontend.pages.productdetails', compact('productdetail', 'product_related'));
+
     }
     public function laptop()
     {
         return view('frontend.pages.cartdetail');
-    }
-    public function cartPage()
-    {
-        $cart_items = Auth::user()->carts;
-        return view('frontend.pages.cart', compact('cart_items'));
     }
 }

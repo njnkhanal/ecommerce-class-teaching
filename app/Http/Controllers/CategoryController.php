@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,6 +17,12 @@ class CategoryController extends Controller
     {
         $category = category::all();
         return view('backend.category.index', compact('category'));
+    }
+
+    public function addcart()
+    {
+        $carts = Auth::user()->carts;
+        return view('frontend.pages.cart', compact('carts'));
     }
 
     /**

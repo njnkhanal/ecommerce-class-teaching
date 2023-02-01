@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\frontendcontroller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+
+Route::get('/cart', [CategoryController::class, 'addcart'])->name('cartindex');
 
 // Route::get('/cartdetail-subhash', function () {
 //     return view('frontend.pages.cartdetail');
@@ -45,12 +48,11 @@ Auth::routes([
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/profile', [HomeController::class, 'profile'])->name('self.profile')->middleware('auth', 'verified');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [HomeController::class, 'profile'])->name('self.profile');
-
     Route::get('/cart/store/{slug}', [CartController::class, 'store'])->name('cart.store');
-    Route::delete('/cart/delete/{id}', [CartController::class, 'destroy'])->name('cart.delete');
+    Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
+    Route::post('/shipping', [ShippingController::class, 'store'])->name('shipping.store');
 
-    Route::get('/cart', [frontendcontroller::class, 'cartPage']);
 });

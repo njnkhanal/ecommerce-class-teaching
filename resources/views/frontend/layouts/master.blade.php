@@ -117,7 +117,8 @@
                     </div>
                     <div class="col-lg-3 col-md-9 col-9 text-center">
                         <div class="nav-icon-holder">
-                            <a href="" class="nav-icon"><i class="fa-2x fa-solid fa-cart-shopping"></i></a>
+                            <a href="{{ route('cartindex') }}" class="nav-icon"><i
+                                    class="fa-2x fa-solid fa-cart-shopping"></i></a>
                             <div class="dropdown">
                                 <span class="dropdown-toggle" type="" id="" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
@@ -162,7 +163,8 @@
                                         @foreach ($cat->subcategory as $sub_cat)
                                             <li>
                                                 <div class="cate-head">
-                                                    <a href="{{route('productlist.subu',$sub_cat)}}" class="cate-head-a"
+                                                    <a href="{{ route('productlist.subu', $sub_cat) }}"
+                                                        class="cate-head-a"
                                                         style="color: #000; font-weight: 500;">{{ $sub_cat->title }}
                                                     </a>
                                                 </div>

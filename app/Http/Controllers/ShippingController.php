@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cart;
-use App\Models\product;
+use App\Models\shipping;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller
+class ShippingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $shipping = shipping::get();
+        return view('backend.shipping.index', compact('shipping'));
     }
 
     /**
@@ -35,25 +34,26 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $slug)
+    public function store(Request $request)
     {
-        $product = product::where('slug', $slug)->first();
-        if ($product == null) {
-            return back();
-        }
+        $request->validate([
+            'address' => 'required',
+            'price' => 'required',
 
-        $data = ['product_id' => $product->id, 'user_id' => Auth::user()->id, 'quantity' => 1];
-        cart::create($data);
-        return redirect(route('cartindex'));
+        ]);
+        $data = $request->all();
+
+        shipping::create($data);
+        return redirect(route('shipping.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\shipping  $shipping
      * @return \Illuminate\Http\Response
      */
-    public function show(cart $cart)
+    public function show(shipping $shipping)
     {
         //
     }
@@ -61,10 +61,10 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\shipping  $shipping
      * @return \Illuminate\Http\Response
      */
-    public function edit(cart $cart)
+    public function edit(shipping $shipping)
     {
         //
     }
@@ -73,10 +73,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\shipping  $shipping
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cart $cart)
+    public function update(Request $request, shipping $shipping)
     {
         //
     }
@@ -84,13 +84,11 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\cart  $cart
+     * @param  \App\Models\shipping  $shipping
      * @return \Illuminate\Http\Response
      */
-    public function destroy($cart)
+    public function destroy(shipping $shipping)
     {
-        $cart = cart::Findorfail($cart);
-        $cart->delete();
-        return back()->with('success', 'Deleted Successfully!');
+        //
     }
 }

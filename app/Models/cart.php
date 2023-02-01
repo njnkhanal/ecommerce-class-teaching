@@ -3,18 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class cart extends Model
 {
     protected $fillable = ['user_id', 'product_id', 'quantity'];
 
-    /**
-     * Get the user that owns the cart
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -24,7 +18,7 @@ class cart extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product(): BelongsTo
+    public function product()
     {
         return $this->belongsTo(product::class, 'product_id', 'id');
     }

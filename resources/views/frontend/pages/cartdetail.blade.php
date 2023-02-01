@@ -8,23 +8,23 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="">First Name*</label>
-                        <input type="text" placeholder="First Name" class="form-control" style="margin-bottom: 10px;">
+                        <label for=""> name*</label>
+                        <input type="text" value="{{ Auth::user()->name }}" class="form-control"
+                            style="margin-bottom: 10px;">
                         <label for="">Email*</label>
-                        <input type="email" placeholder="Email" class="form-control" style="margin-bottom: 10px;">
+                        <input type="email" value="{{ Auth::user()->email }}" class="form-control"
+                            style="margin-bottom: 10px;">
                     </div>
                     <div class="col-md-6">
-                        <label for="">Last Name</label>
-                        <input type="text" placeholder="Last Name" class="form-control" style="margin-bottom: 10px;">
+
                         <label for="">Phone*</label>
                         <input type="text" placeholder="Phone" class="form-control" style="margin-bottom: 10px;">
                     </div>
                 </div>
-                <label for="">Address Line 1*</label>
-                <input type="text" placeholder="Address Line 1" class="form-control" style="margin-bottom: 10px;">
-                <label for="">Address Line 2*</label>
-                <input type="text" placeholder="Street Address" class="form-control" style="margin-bottom: 10px;">
-                <div class="row">
+                <label for="">Address*</label>
+                <input type="text" value="{{ Auth::user()->address }}" class="form-control" style="margin-bottom: 10px;">
+
+                {{--  <div class="row">
                     <div class="col-md-6">
                         <label for="">Postal Code/Zip</label>
                         <input type="text" placeholder="Postal Code/Zip" class="form-control">
@@ -35,13 +35,17 @@
                             <option value="">Nepal</option>
                         </select>
                     </div>
-                </div>
+                </div>  --}}
             </div>
             <div class="col-md-4">
                 <div class="cart-total-heading" style="border-bottom: 1px solid gray;">
                     <h4 style="color:orange; margin-bottom: 10px;">Cart Total</h4>
                 </div>
                 <div class="row">
+                    @php
+                        $subtotal = 0;
+                    @endphp
+
                     <div class="col-md-6" style="padding-top: 20px; padding-bottom: 20px; text-align:center;">
                         <span>Cart Subtotal:</span>
                     </div>
@@ -49,13 +53,22 @@
                         <span>Rs.4000.00</span>
                     </div>
                 </div>
+
                 <div class="shipping" style="padding: 20px 0;">
                     <h4 style="color: orange; border-bottom: 1px solid gray; padding-bottom: 10px; margin-bottom: 20px;">
                         Shipping Charge</h4>
+                    @php
+                        $shippingcat = App\Models\shipping::all();
+                    @endphp
+
                     <select name="" id="" class="form-control">
                         <option value="">Select your area</option>
-                        <option value="">Out off Kathmandu-Not Available: Rs.0.00</option>
-                        <option value="">Kathmandu: Rs.100.00</option>
+                        @foreach ($shippingcat as $shipping)
+                            <option value="{{ $shipping->id }}">{{ $shipping->address }}(Rs. {{ $shipping->price }})
+                            </option>
+                        @endforeach
+                        <option value="">Out off Kathmandu-Not Available: Rs.0.00</option <option value="">
+                        Kathmandu: Rs.100.00</option>
                     </select>
                     <div class="row">
                         <div class="col-md-6" style="text-align: center; padding-top: 10px;">
