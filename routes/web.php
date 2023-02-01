@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\frontendcontroller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShippingController;
@@ -52,7 +53,7 @@ Route::get('/profile', [HomeController::class, 'profile'])->name('self.profile')
 
 Route::middleware('auth')->group(function () {
     Route::get('/cart/store/{slug}', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
     Route::post('/shipping', [ShippingController::class, 'store'])->name('shipping.store');
-
 });

@@ -1,7 +1,8 @@
 @extends('frontend.layouts.master')
 @section('content')
     <section style="padding: 10px 50px 50px 50px;" class="checkout-container">
-        <div class="row">
+        <form method="POST" action="{{ route('checkout.store') }}" class="row">
+            @csrf
             <div class="col-md-8">
                 <div class="checkout-heading">
                     <h4 style="color: #383e5c;">Checkout</h4>
@@ -44,13 +45,18 @@
                 <div class="row">
                     @php
                         $subtotal = 0;
+                        foreach (Auth::user()->carts as $cart) {
+                            if ($cart->product) {
+                                $subtotal += $cart->product->price;
+                            }
+                        }
                     @endphp
 
                     <div class="col-md-6" style="padding-top: 20px; padding-bottom: 20px; text-align:center;">
                         <span>Cart Subtotal:</span>
                     </div>
                     <div class="col-md-6" style="padding-top: 20px; padding-bottom: 20px; text-align:center;">
-                        <span>Rs.4000.00</span>
+                        <span>Rs.{{ $subtotal }}</span>
                     </div>
                 </div>
 
@@ -75,7 +81,7 @@
                             <span>Total</span>
                         </div>
                         <div class="col-md-6" style="text-align: center; padding-top: 10px;">
-                            <span>:Rs.4,700.00</span>
+                            <span>:Rs.{{ number_format($subtotal, 2) }}</span>
                         </div>
                     </div>
                 </div>
@@ -94,6 +100,6 @@
                 </div>
 
             </div>
-        </div>
+        </form>
     </section>
 @endsection
